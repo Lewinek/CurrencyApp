@@ -1,0 +1,9 @@
+ext {
+    versions = [
+            kotlin: '1.7.10',
+    ]
+
+    coreDependencies = [
+            kotlinStdLib: "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    ]
+}
