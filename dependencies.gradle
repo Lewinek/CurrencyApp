@@ -1,9 +1,10 @@
 ext {
     versions = [
-            kotlin          : '1.7.10',
-            material        : '1.2.0',
-            recyclerView    : '1.1.0',
-            constraintLayout: '2.0.4',
+            kotlinStdlib     : '1.8.0-Beta',
+            kotlin           : '1.9.0',
+            material         : '1.2.0',
+            recyclerView     : '1.1.0',
+            constraintLayout : '2.0.4',
             glide            : '4.13.0',
             coroutinesAndroid: '1.4.2',
             koin             : '3.2.2',
@@ -14,7 +15,8 @@ ext {
     ]
 
     coreDependencies = [
-            kotlinStdLib: "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+            kotlinStdLib: "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlinStdlib",
+            coreKtx     : "androidx.core:core-ktx:$versions.kotlin",
     ]
 
     uiDependencies = [
