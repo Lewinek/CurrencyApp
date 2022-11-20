@@ -1,10 +1,9 @@
 ext {
-    
+
     projectVersions = [
             minSdk     : 23,
             targetSdk  : 33,
             compileSdk : 33,
-            buildTool  : "30.0.3",
             versionName: "0.0.1",
             versionCode: 1
     ]
