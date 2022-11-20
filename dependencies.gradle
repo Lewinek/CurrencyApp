@@ -1,4 +1,13 @@
 ext {
+
+    projectVersions = [
+            minSdk     : 23,
+            targetSdk  : 33,
+            compileSdk : 33,
+            versionName: "0.0.1",
+            versionCode: 1
+    ]
+
     versions = [
             kotlinStdlib     : '1.4.10',
             kotlin           : '1.9.0',
