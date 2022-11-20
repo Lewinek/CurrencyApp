@@ -39,6 +39,4 @@ dependencies {
     implementation koinDependencies.values()
     implementation networkDependencies.values()
     implementation testDependencies.values()
-
-    implementation 'androidx.appcompat:appcompat:1.5.1'
 }

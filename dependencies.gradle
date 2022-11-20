@@ -15,11 +15,13 @@ ext {
             junit            : '4.13.2',
             androidxJunit    : '1.1.4',
             espresso         : '3.5.0',
+            appCompat        : '1.5.1',
     ]
 
     coreDependencies = [
             kotlinStdLib: "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlinStdlib",
             coreKtx     : "androidx.core:core-ktx:$versions.kotlin",
+            appCompat     : "androidx.appcompat:appcompat:$versions.appCompat",
     ]
 
     uiDependencies = [
