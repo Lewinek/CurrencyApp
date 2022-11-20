@@ -12,6 +12,9 @@ ext {
             okhttp3          : '4.9.0',
             moshi            : '1.11.0',
             moshiConverter   : '2.4.0',
+            junit            : '4.13.2',
+            androidxJunit    : '1.1.4',
+            espresso         : '3.5.0',
     ]
 
     coreDependencies = [
@@ -42,5 +45,11 @@ ext {
             moshi            : "com.squareup.moshi:moshi:$versions.moshi",
             moshiKotlin      : "com.squareup.moshi:moshi-kotlin:$versions.moshi",
             moshiConverter   : "com.squareup.retrofit2:converter-moshi:$versions.moshiConverter",
+    ]
+
+    testDependencies = [
+            junit        : "junit:junit:$versions.junit",
+            androidxJunit: "androidx.test.ext:junit:$versions.androidxJunit",
+            espresso     : "androidx.test.espresso:espresso-core:$versions.espresso"
     ]
 }
