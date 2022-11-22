@@ -34,5 +34,7 @@ android {
 }
 
 dependencies {
-
+    implementation coreDependencies.values()
+    implementation uiDependencies.values()
+    implementation coroutinesDependencies.values()
 }
