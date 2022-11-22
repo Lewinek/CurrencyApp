@@ -5,7 +5,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 
-class BaseActivity<UM : UiModel, VM : BaseViewModel<UM>>(
+abstract class BaseActivity<UM : UiModel, VM : BaseViewModel<UM>>(
     @LayoutRes val layoutRes: Int
 ) : AppCompatActivity() {
 
@@ -20,3 +20,4 @@ class BaseActivity<UM : UiModel, VM : BaseViewModel<UM>>(
             uiLiveData.observe(this@BaseActivity, Observer { render(it) })
         }
     }
+}
