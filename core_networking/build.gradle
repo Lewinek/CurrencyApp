@@ -4,11 +4,9 @@ plugins {
 }
 
 android {
-    namespace 'com.example.currencyapp'
     compileSdk projectVersions.compileSdk
 
     defaultConfig {
-        applicationId "com.example.currencyapp"
         minSdk projectVersions.minSdk
         targetSdk projectVersions.targetSdk
         versionCode projectVersions.versionCode
@@ -22,25 +20,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
         jvmTarget = '1.8'
     }
 }
 
 dependencies {
-    implementation project(":core_architecture")
-    implementation project(":core_networking")
-
     implementation coreDependencies.values()
     implementation uiDependencies.values()
     implementation coroutinesDependencies.values()
-    implementation koinDependencies.values()
     implementation networkDependencies.values()
-    implementation testDependencies.values()
 }
