@@ -4,16 +4,13 @@ plugins {
 }
 
 android {
-    namespace 'com.example.core_networking'
-    compileSdk 32
+    compileSdk projectVersions.compileSdk
 
     defaultConfig {
-        applicationId "com.example.core_networking"
-        minSdk 23
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
-
+        minSdk projectVersions.minSdk
+        targetSdk projectVersions.targetSdk
+        versionCode projectVersions.versionCode
+        versionName projectVersions.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
