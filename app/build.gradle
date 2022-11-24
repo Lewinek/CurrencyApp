@@ -35,6 +35,7 @@ android {
 
 dependencies {
     implementation project(":core_architecture")
+    implementation project(":core_networking")
 
     implementation coreDependencies.values()
     implementation uiDependencies.values()
