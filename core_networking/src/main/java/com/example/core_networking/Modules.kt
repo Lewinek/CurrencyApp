@@ -19,4 +19,6 @@ val networkingModule = module {
             .add(com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory())
             .build()
     }
+
+    single { get<Retrofit>().create(CurrencyApi::class.java) }
 }
