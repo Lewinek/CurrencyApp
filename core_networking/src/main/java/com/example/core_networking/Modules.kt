@@ -7,7 +7,7 @@ val networkingModule = module {
 
     single {
         Retrofit.Builder()
-            .baseUrl("https://hiring.revolut.codes/api/android")
+            .baseUrl("https://hiring.revolut.codes/api/android/")
             .build()
     }
 }
