@@ -1,6 +1,6 @@
 plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    id 'com.android.library'
+    id 'kotlin-android'
 }
 
 android {
@@ -34,4 +34,5 @@ dependencies {
     implementation uiDependencies.values()
     implementation coroutinesDependencies.values()
     implementation networkDependencies.values()
+    implementation koinDependencies.values()
 }
