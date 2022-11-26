@@ -21,4 +21,6 @@ val networkingModule = module {
     }
 
     single { get<Retrofit>().create(CurrencyApi::class.java) }
+
+    factory<CurrencyRepository> { CurrencyRepositoryImpl(get()) }
 }
