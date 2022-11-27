@@ -11,10 +11,20 @@ class RateFragment :
     override val viewModel: RateViewModel by viewModel()
 
     override fun initViews(binding: FragmentRateBinding) {
-        binding.ratesRecyclerView.adapter = RateAdapter()
+        binding.ratesRecyclerView.adapter = RateAdapter(
+            onItemClick = {
+                viewModel.getRatesByBaseCurrency(it)
+            },
+            onValueChange = {
+                viewModel.calculateEquivalentToAmountBaseCurrency(it)
+            }
+        )
     }
 
     override fun render(model: RateUiModel) {
-        model.rates?.let { (binding?.ratesRecyclerView?.adapter as RateAdapter).submitList(it) }
+        model.rates?.let {
+            (binding?.ratesRecyclerView?.adapter as RateAdapter).submitList(it)
+            binding?.ratesRecyclerView?.scrollToPosition(0)
+        }
     }
 }
