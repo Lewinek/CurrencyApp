@@ -8,4 +8,11 @@
         android:id="@+id/rateFragment"
         android:name="com.example.currencyapp.rate.RateFragment"
         android:label="RateFragment" />
+
+    <action
+        android:id="@+id/actionNavigateToRate"
+        app:destination="@+id/rateFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/rateFragment"
+        app:popUpToInclusive="true" />
 </navigation>
