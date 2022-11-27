@@ -11,7 +11,10 @@ val networkingModule = module {
         Retrofit.Builder()
             .baseUrl(ApiConfig.API_URL)
             .addConverterFactory(MoshiConverterFactory.create(get()))
-            .build()
+            .client(
+                RetrofitClientInstance.unSafeOkHttpClient()
+                    .build()
+            ).build()
     }
 
     single {
