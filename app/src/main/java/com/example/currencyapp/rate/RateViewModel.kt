@@ -30,6 +30,12 @@ class RateViewModel(private val repository: CurrencyRepository) : BaseViewModel<
     }
 
     private fun saveBaseCurrency(name: String): Rate {
-        return Rate(name, 1.0, true)
+        return Rate(name, 1.0, true, 1.0)
+    }
+
+    fun calculateEquivalentToAmountBaseCurrency(baseCurrency: Double){
+        val list = uiState?.rates?.map { it.copy(convertedValue = it.rate * baseCurrency) }
+        uiState = RateUiModel(rates = list?.toMutableList() )
+//        uiState?.rates?.map { it.rate * baseCurrency }
     }
 }

@@ -15,7 +15,9 @@ class RateFragment :
             onItemClick = {
                 viewModel.getRatesByBaseCurrency(it)
             },
-            onValueChange = {}
+            onValueChange = {
+                viewModel.calculateEquivalentToAmountBaseCurrency(it)
+            }
         )
     }
 

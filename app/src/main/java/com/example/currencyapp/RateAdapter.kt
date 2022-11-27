@@ -36,8 +36,13 @@ class RateAdapter(
 
         fun bind(rate: Rate, context: Context) {
             baseCurrency = rate
-            binding?.name?.text = rate.name
-            binding?.value?.setText(rate.rate.toString())
+            binding.name.text = rate.name
+            if (rate.convertedValue == null){
+                binding.value.setText(rate.rate.toString())
+            } else {
+                binding.value.setText(rate.convertedValue.toString())
+            }
+//            binding?.value?.setText(rate.convertedValue.toString())
         }
     }
 
