@@ -13,11 +13,10 @@ class RateViewModel(private val repository: CurrencyRepository) : BaseViewModel<
         getRatesByBaseCurrency("GBP")
     }
 
-    private fun getRatesByBaseCurrency(name: String) {
-
+    fun getRatesByBaseCurrency(name: String) {
         viewModelScope.launch {
             viewModelScope.launch {
-                uiState = when(val ratesResponse = repository.getRatesByBaseCurrency()){
+                uiState = when (val ratesResponse = repository.getRatesByBaseCurrency(name)) {
                     is ResultWrapper.Success -> {
                         val list = ratesResponse.value.toMutableList()
                         list.add(0, saveBaseCurrency(name))
