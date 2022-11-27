@@ -21,6 +21,7 @@ class RateFragment :
     override fun render(model: RateUiModel) {
         model.rates?.let {
             (binding?.ratesRecyclerView?.adapter as RateAdapter).submitList(it)
+            binding?.ratesRecyclerView?.smoothScrollToPosition(0)
         }
     }
 }
