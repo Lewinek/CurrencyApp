@@ -25,12 +25,13 @@ ext {
             androidxJunit    : '1.1.4',
             espresso         : '3.5.0',
             appCompat        : '1.5.1',
+            databinding      : '4.2.2',
     ]
 
     coreDependencies = [
             kotlinStdLib: "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlinStdlib",
             coreKtx     : "androidx.core:core-ktx:$versions.kotlin",
-            appCompat     : "androidx.appcompat:appcompat:$versions.appCompat",
+            appCompat   : "androidx.appcompat:appcompat:$versions.appCompat",
     ]
 
     uiDependencies = [
@@ -38,6 +39,7 @@ ext {
             recyclerView    : "androidx.recyclerview:recyclerview:$versions.recyclerView",
             constraintLayout: "androidx.constraintlayout:constraintlayout:$versions.constraintLayout",
             glide           : "com.github.bumptech.glide:glide:$versions.glide",
+            databinding     : "androidx.databinding:databinding-runtime:$versions.databinding",
     ]
 
     coroutinesDependencies = [
