@@ -14,7 +14,8 @@ class RateFragment :
         binding.ratesRecyclerView.adapter = RateAdapter(
             onItemClick = {
                 viewModel.getRatesByBaseCurrency(it)
-            }
+            },
+            onValueChange = {}
         )
     }
 

@@ -3,19 +3,22 @@ package com.example.currencyapp
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core_networking.Rate
 import com.example.currencyapp.databinding.ItemRateBinding
 
 class RateAdapter(
-    private val onItemClick: (String) -> Unit
+    private val onItemClick: (String) -> Unit,
+    private val onValueChange: (Double) -> Unit
 ) : androidx.recyclerview.widget.ListAdapter<Rate, RateAdapter.RateViewHolder>(
     RatesDiffCallback
 ) {
     class RateViewHolder(
         private val binding: ItemRateBinding,
-        onItemClick: (String) -> Unit
+        onItemClick: (String) -> Unit,
+        onValueChange: (Double) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private var baseCurrency: Rate? = null
@@ -23,6 +26,11 @@ class RateAdapter(
         init {
             binding.item.setOnClickListener {
                 baseCurrency?.let { onItemClick.invoke(it.name) }
+            }
+            binding.value.doAfterTextChanged {
+                if (baseCurrency?.isBaseCurrency == true) {
+                    onValueChange.invoke(it.toString().toDouble())
+                }
             }
         }
 
@@ -39,7 +47,7 @@ class RateAdapter(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            ), onItemClick
+            ), onItemClick, onValueChange
         )
     }
 

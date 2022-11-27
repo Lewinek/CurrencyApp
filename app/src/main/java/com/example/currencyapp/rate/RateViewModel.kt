@@ -30,6 +30,6 @@ class RateViewModel(private val repository: CurrencyRepository) : BaseViewModel<
     }
 
     private fun saveBaseCurrency(name: String): Rate {
-        return Rate(name, 1.0)
+        return Rate(name, 1.0, true)
     }
 }
