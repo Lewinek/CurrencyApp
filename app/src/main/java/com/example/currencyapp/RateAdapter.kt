@@ -15,7 +15,8 @@ class RateAdapter : androidx.recyclerview.widget.ListAdapter<Rate, RateAdapter.R
         private val binding: ItemRateBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(rate: Rate, context: Context) {
-
+            binding?.name?.text = rate.name
+            binding?.value?.setText(rate.rate.toString())
         }
     }
 
