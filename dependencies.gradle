@@ -26,6 +26,7 @@ ext {
             espresso         : '3.5.0',
             appCompat        : '1.5.1',
             databinding      : '4.2.2',
+            androidNavigation: '2.3.2',
     ]
 
     coreDependencies = [
@@ -35,11 +36,13 @@ ext {
     ]
 
     uiDependencies = [
-            material        : "com.google.android.material:material:$versions.material",
-            recyclerView    : "androidx.recyclerview:recyclerview:$versions.recyclerView",
-            constraintLayout: "androidx.constraintlayout:constraintlayout:$versions.constraintLayout",
-            glide           : "com.github.bumptech.glide:glide:$versions.glide",
-            databinding     : "androidx.databinding:databinding-runtime:$versions.databinding",
+            material          : "com.google.android.material:material:$versions.material",
+            recyclerView      : "androidx.recyclerview:recyclerview:$versions.recyclerView",
+            constraintLayout  : "androidx.constraintlayout:constraintlayout:$versions.constraintLayout",
+            glide             : "com.github.bumptech.glide:glide:$versions.glide",
+            databinding       : "androidx.databinding:databinding-runtime:$versions.databinding",
+            navigationFragment: "androidx.navigation:navigation-fragment-ktx:$versions.androidNavigation",
+            navigationUi      : "androidx.navigation:navigation-ui-ktx:$versions.androidNavigation",
     ]
 
     coroutinesDependencies = [

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigation_graph"
+    app:startDestination="@id/rateFragment">
+
+    <fragment
+        android:id="@+id/rateFragment"
+        android:name="com.example.currencyapp.rate.RateFragment"
+        android:label="RateFragment" />
+
+    <action
+        android:id="@+id/actionNavigateToRate"
+        app:destination="@+id/rateFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/rateFragment"
+        app:popUpToInclusive="true" />
+</navigation>
