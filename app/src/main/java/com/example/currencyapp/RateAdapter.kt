@@ -34,14 +34,15 @@ class RateAdapter(
             }
         }
 
-        fun bind(rate: Currency) {
-            baseCurrency = rate
-            binding.name.text = rate.name
-            if (rate.convertedValue == null){
-                binding.value.setText(rate.value.toString())
+        fun bind(currency: Currency) {
+            baseCurrency = currency
+            binding.name.text = currency.name
+            if (currency.convertedValue == null) {
+                binding.value.setText(currency.value.toString())
             } else {
-                binding.value.setText(rate.convertedValue.toString())
+                binding.value.setText(currency.convertedValue.toString())
             }
+            binding.value.isEnabled = currency.isBaseCurrency
         }
     }
 
