@@ -8,17 +8,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core_networking.Rate
 import com.example.currencyapp.databinding.ItemRateBinding
+import java.math.BigDecimal
 
 class RateAdapter(
     private val onItemClick: (String) -> Unit,
-    private val onValueChange: (Double) -> Unit
+    private val onValueChange: (BigDecimal) -> Unit
 ) : androidx.recyclerview.widget.ListAdapter<Rate, RateAdapter.RateViewHolder>(
     RatesDiffCallback
 ) {
     class RateViewHolder(
         private val binding: ItemRateBinding,
         onItemClick: (String) -> Unit,
-        onValueChange: (Double) -> Unit
+        onValueChange: (BigDecimal) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private var baseCurrency: Rate? = null
@@ -29,7 +30,7 @@ class RateAdapter(
             }
             binding.value.doAfterTextChanged {
                 if (baseCurrency?.isBaseCurrency == true) {
-                    onValueChange.invoke(it.toString().toDouble())
+                    onValueChange.invoke(it.toString().toBigDecimal())
                 }
             }
         }
