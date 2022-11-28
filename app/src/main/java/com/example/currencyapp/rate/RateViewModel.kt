@@ -16,16 +16,14 @@ class RateViewModel(private val repository: CurrencyRepository) : BaseViewModel<
 
     fun getRatesByBaseCurrency(name: String) {
         viewModelScope.launch {
-            viewModelScope.launch {
-                uiState = when (val ratesResponse = repository.getRatesByBaseCurrency(name)) {
-                    is ResultWrapper.Success -> {
-                        val list = ratesResponse.value.toMutableList()
-                        list.add(0, saveBaseCurrency(name))
-                        RateUiModel(rates = list)
-                    }
-                    is ResultWrapper.GenericError -> RateUiModel(showError = true)
-                    is ResultWrapper.NetworkError -> RateUiModel(showError = true)
+            uiState = when (val ratesResponse = repository.getRatesByBaseCurrency(name)) {
+                is ResultWrapper.Success -> {
+                    val list = ratesResponse.value.toMutableList()
+                    list.add(0, saveBaseCurrency(name))
+                    RateUiModel(rates = list)
                 }
+                is ResultWrapper.GenericError -> RateUiModel(showError = true)
+                is ResultWrapper.NetworkError -> RateUiModel(showError = true)
             }
         }
     }
@@ -34,8 +32,8 @@ class RateViewModel(private val repository: CurrencyRepository) : BaseViewModel<
         return Rate(name, 1.toBigDecimal(), true, 1.toBigDecimal())
     }
 
-    fun calculateEquivalentToAmountBaseCurrency(baseCurrency: BigDecimal){
+    fun calculateEquivalentToAmountBaseCurrency(baseCurrency: BigDecimal) {
         val list = uiState?.rates?.map { it.copy(convertedValue = it.rate * baseCurrency) }
-        uiState = RateUiModel(rates = list?.toMutableList() )
+        uiState = RateUiModel(rates = list?.toMutableList())
     }
 }
