@@ -5,13 +5,14 @@ import com.example.core_architecture.BaseViewModel
 import com.example.core_networking.CurrencyRepository
 import com.example.core_networking.Rate
 import com.example.core_networking.ResultWrapper
+import com.example.currencyapp.Constants
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 
 class RateViewModel(private val repository: CurrencyRepository) : BaseViewModel<RateUiModel>() {
 
     init {
-        getRatesByBaseCurrency("GBP")
+        getRatesByBaseCurrency(Constants.INITIAL_CURRENCY_VALUE_NAME)
     }
 
     fun getRatesByBaseCurrency(name: String) {
@@ -33,7 +34,9 @@ class RateViewModel(private val repository: CurrencyRepository) : BaseViewModel<
     }
 
     fun calculateEquivalentToAmountBaseCurrency(baseCurrency: BigDecimal) {
-        val list = uiState?.rates?.map { it.copy(convertedValue = it.rate * baseCurrency) }
-        uiState = RateUiModel(rates = list?.toMutableList())
+        uiState =
+            RateUiModel(rates = uiState?.rates
+                ?.map { it.copy(convertedValue = it.rate * baseCurrency) }
+                ?.toMutableList())
     }
 }
