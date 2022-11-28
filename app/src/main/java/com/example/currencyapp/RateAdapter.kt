@@ -38,7 +38,7 @@ class RateAdapter(
             baseCurrency = rate
             binding.name.text = rate.name
             if (rate.convertedValue == null){
-                binding.value.setText(rate.rate.toString())
+                binding.value.setText(rate.value.toString())
             } else {
                 binding.value.setText(rate.convertedValue.toString())
             }

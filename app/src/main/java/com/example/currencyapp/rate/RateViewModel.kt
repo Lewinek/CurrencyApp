@@ -36,7 +36,7 @@ class RateViewModel(private val repository: CurrencyRepository) : BaseViewModel<
     fun calculateEquivalentToAmountBaseCurrency(baseCurrency: BigDecimal) {
         uiState =
             RateUiModel(rates = uiState?.rates
-                ?.map { it.copy(convertedValue = it.rate * baseCurrency) }
+                ?.map { it.copy(convertedValue = it.value * baseCurrency) }
                 ?.toMutableList())
     }
 }
