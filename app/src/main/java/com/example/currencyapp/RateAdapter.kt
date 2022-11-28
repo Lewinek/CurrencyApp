@@ -35,7 +35,7 @@ class RateAdapter(
             }
         }
 
-        fun bind(rate: Rate, context: Context) {
+        fun bind(rate: Rate) {
             baseCurrency = rate
             binding.name.text = rate.name
             if (rate.convertedValue == null){
@@ -57,7 +57,7 @@ class RateAdapter(
     }
 
     override fun onBindViewHolder(holder: RateViewHolder, position: Int) {
-        holder.bind(getItem(position), holder.itemView.context)
+        holder.bind(getItem(position))
     }
 
 }
