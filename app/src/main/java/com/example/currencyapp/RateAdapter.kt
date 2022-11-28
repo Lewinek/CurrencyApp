@@ -43,7 +43,6 @@ class RateAdapter(
             } else {
                 binding.value.setText(rate.convertedValue.toString())
             }
-//            binding?.value?.setText(rate.convertedValue.toString())
         }
     }
 
