@@ -3,7 +3,7 @@ package com.example.currencyapp.rate
 import androidx.lifecycle.viewModelScope
 import com.example.core_architecture.BaseViewModel
 import com.example.core_networking.CurrencyRepository
-import com.example.core_networking.Rate
+import com.example.core_networking.Currency
 import com.example.core_networking.ResultWrapper
 import com.example.currencyapp.Constants
 import kotlinx.coroutines.launch
@@ -29,8 +29,8 @@ class RateViewModel(private val repository: CurrencyRepository) : BaseViewModel<
         }
     }
 
-    private fun createBaseCurrency(currencyName: String): Rate {
-        return Rate(currencyName, 1.toBigDecimal(), true, 1.toBigDecimal())
+    private fun createBaseCurrency(currencyName: String): Currency {
+        return Currency(currencyName, 1.toBigDecimal(), true, 1.toBigDecimal())
     }
 
     fun calculateEquivalentToAmountBaseCurrency(baseCurrency: BigDecimal) {

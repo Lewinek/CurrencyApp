@@ -1,19 +1,18 @@
 package com.example.currencyapp
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core_networking.Rate
+import com.example.core_networking.Currency
 import com.example.currencyapp.databinding.ItemRateBinding
 import java.math.BigDecimal
 
 class RateAdapter(
     private val onItemClick: (String) -> Unit,
     private val onValueChange: (BigDecimal) -> Unit
-) : androidx.recyclerview.widget.ListAdapter<Rate, RateAdapter.RateViewHolder>(
+) : androidx.recyclerview.widget.ListAdapter<Currency, RateAdapter.RateViewHolder>(
     RatesDiffCallback
 ) {
     class RateViewHolder(
@@ -22,7 +21,7 @@ class RateAdapter(
         onValueChange: (BigDecimal) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        private var baseCurrency: Rate? = null
+        private var baseCurrency: Currency? = null
 
         init {
             binding.item.setOnClickListener {
@@ -35,7 +34,7 @@ class RateAdapter(
             }
         }
 
-        fun bind(rate: Rate) {
+        fun bind(rate: Currency) {
             baseCurrency = rate
             binding.name.text = rate.name
             if (rate.convertedValue == null){
@@ -62,12 +61,12 @@ class RateAdapter(
 
 }
 
-object RatesDiffCallback : DiffUtil.ItemCallback<Rate>() {
-    override fun areItemsTheSame(oldItem: Rate, newItem: Rate): Boolean {
+object RatesDiffCallback : DiffUtil.ItemCallback<Currency>() {
+    override fun areItemsTheSame(oldItem: Currency, newItem: Currency): Boolean {
         return oldItem.name == newItem.name
     }
 
-    override fun areContentsTheSame(oldItem: Rate, newItem: Rate): Boolean {
+    override fun areContentsTheSame(oldItem: Currency, newItem: Currency): Boolean {
         return oldItem == newItem
     }
 }
