@@ -15,22 +15,30 @@ class RateViewModel(private val repository: CurrencyRepository) : BaseViewModel<
         getRatesByBaseCurrency(Constants.INITIAL_CURRENCY_VALUE_NAME)
     }
 
-    fun getRatesByBaseCurrency(name: String) {
+    fun getRatesByBaseCurrency(currencyName: String) {
         viewModelScope.launch {
-            uiState = when (val ratesResponse = repository.getRatesByBaseCurrency(name)) {
-                is ResultWrapper.Success -> {
-                    val list = ratesResponse.value.toMutableList()
-                    list.add(0, createBaseCurrency(name))
-                    RateUiModel(rates = list)
-                }
+            uiState = when (val ratesResponse = repository.getRatesByBaseCurrency(currencyName)) {
+                is ResultWrapper.Success -> RateUiModel(
+                    rates = addBaseCurrencyToFirstItem(
+                        ratesResponse.value.toMutableList(),
+                        currencyName
+                    )
+                )
                 is ResultWrapper.GenericError -> RateUiModel(showError = true)
                 is ResultWrapper.NetworkError -> RateUiModel(showError = true)
             }
         }
     }
 
-    private fun createBaseCurrency(currencyName: String): Currency {
-        return Currency(currencyName, 1.toBigDecimal(), true, 1.toBigDecimal())
+    private fun createBaseCurrency(currencyName: String) =
+        Currency(currencyName, 1.toBigDecimal(), true, 1.toBigDecimal())
+
+    private fun addBaseCurrencyToFirstItem(
+        currencies: MutableList<Currency>,
+        currencyName: String
+    ): MutableList<Currency> {
+        currencies.add(0, createBaseCurrency(currencyName))
+        return currencies
     }
 
     fun calculateEquivalentToAmountBaseCurrency(baseCurrency: BigDecimal) {
