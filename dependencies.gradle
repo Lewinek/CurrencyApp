@@ -28,6 +28,7 @@ ext {
             databinding      : '4.2.2',
             androidNavigation: '2.3.2',
             jupiter          : '5.8.0',
+            mockk            : '1.13.2',
     ]
 
     coreDependencies = [
@@ -65,8 +66,9 @@ ext {
     ]
 
     testDependencies = [
-            junit        : "org.junit.jupiter:junit-jupiter:5.8.0",
+            junit        : "org.junit.jupiter:junit-jupiter:$versions.jupiter",
             androidxJunit: "androidx.test.ext:junit:$versions.androidxJunit",
-            espresso     : "androidx.test.espresso:espresso-core:$versions.espresso"
+            espresso     : "androidx.test.espresso:espresso-core:$versions.espresso",
+            mockk        : "io.mockk:mockk:$versions.mockk"
     ]
 }
