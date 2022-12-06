@@ -29,6 +29,7 @@ ext {
             androidNavigation: '2.3.2',
             jupiter          : '5.8.0',
             mockk            : '1.13.2',
+            kotest           : '5.0.0',
     ]
 
     coreDependencies = [
@@ -66,8 +67,10 @@ ext {
     ]
 
     testDependencies = [
-            junit        : "org.junit.jupiter:junit-jupiter:$versions.jupiter",
-            espresso     : "androidx.test.espresso:espresso-core:$versions.espresso",
-            mockk        : "io.mockk:mockk:$versions.mockk"
+            junit         : "org.junit.jupiter:junit-jupiter:$versions.jupiter",
+            espresso      : "androidx.test.espresso:espresso-core:$versions.espresso",
+            mockk         : "io.mockk:mockk:$versions.mockk",
+            kotest        : "io.kotest:kotest-assertions-core:$versions.kotest",
+            kotestProperty: "io.kotest:kotest-property:$versions.kotest",
     ]
 }
