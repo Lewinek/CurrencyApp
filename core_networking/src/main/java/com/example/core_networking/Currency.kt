@@ -7,4 +7,6 @@ data class Currency(
     val value: BigDecimal,
     val isBaseCurrency: Boolean = false,
     val convertedValue: BigDecimal? = null
-)
+){
+    companion object
+}
