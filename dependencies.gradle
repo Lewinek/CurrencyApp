@@ -9,13 +9,13 @@ ext {
     ]
 
     versions = [
-            kotlinStdlib     : '1.4.10',
+            kotlinStdlib     : '1.7.20',
             kotlin           : '1.9.0',
             material         : '1.2.0',
             recyclerView     : '1.1.0',
             constraintLayout : '2.0.4',
             glide            : '4.13.0',
-            coroutinesAndroid: '1.4.2',
+            coroutinesAndroid: '1.6.4',
             koin             : '3.2.2',
             retrofit         : '2.9.0',
             okhttp3          : '4.9.0',
@@ -67,7 +67,6 @@ ext {
 
     testDependencies = [
             junit        : "org.junit.jupiter:junit-jupiter:$versions.jupiter",
-            androidxJunit: "androidx.test.ext:junit:$versions.androidxJunit",
             espresso     : "androidx.test.espresso:espresso-core:$versions.espresso",
             mockk        : "io.mockk:mockk:$versions.mockk"
     ]
