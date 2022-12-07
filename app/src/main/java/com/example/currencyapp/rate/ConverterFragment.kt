@@ -6,9 +6,9 @@ import com.example.currencyapp.RateAdapter
 import com.example.currencyapp.databinding.FragmentRateBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class RateFragment :
-    BaseFragment<RateUiModel, RateViewModel, FragmentRateBinding>(R.layout.fragment_rate) {
-    override val viewModel: RateViewModel by viewModel()
+class ConverterFragment :
+    BaseFragment<ConverterUiModel, ConverterViewModel, FragmentRateBinding>(R.layout.fragment_rate) {
+    override val viewModel: ConverterViewModel by viewModel()
 
     override fun initViews(binding: FragmentRateBinding) {
         binding.ratesRecyclerView.adapter = RateAdapter(
@@ -21,7 +21,7 @@ class RateFragment :
         )
     }
 
-    override fun render(model: RateUiModel) {
+    override fun render(model: ConverterUiModel) {
         model.rates?.let {
             (binding?.ratesRecyclerView?.adapter as RateAdapter).submitList(it)
             binding?.ratesRecyclerView?.scrollToPosition(0)
