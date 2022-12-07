@@ -36,13 +36,15 @@ class ConverterAdapter(
 
         fun bind(currency: CurrencyDisplayable) {
             baseCurrency = currency
-            binding.name.text = currency.name
-            if (currency.convertedValue == null) {
-                binding.value.setText(currency.value.toString())
-            } else {
-                binding.value.setText(currency.convertedValue.toString())
+            with(currency){
+                binding.name.text = name
+                if (convertedValue == null) {
+                    binding.value.setText(value.toString())
+                } else {
+                    binding.value.setText(convertedValue.toString())
+                }
+                binding.value.isEnabled = isBaseCurrency
             }
-            binding.value.isEnabled = currency.isBaseCurrency
         }
     }
 
