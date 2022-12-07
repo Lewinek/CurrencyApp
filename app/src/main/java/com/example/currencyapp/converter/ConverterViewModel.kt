@@ -1,4 +1,4 @@
-package com.example.currencyapp.rate
+package com.example.currencyapp.converter
 
 import androidx.lifecycle.viewModelScope
 import com.example.core_architecture.BaseViewModel
@@ -9,7 +9,7 @@ import com.example.currencyapp.Constants
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 
-class RateViewModel(private val repository: CurrencyRepository) : BaseViewModel<RateUiModel>() {
+class ConverterViewModel(private val repository: CurrencyRepository) : BaseViewModel<ConverterUiModel>() {
 
     init {
         getRatesByBaseCurrency(Constants.INITIAL_CURRENCY_VALUE_NAME)
@@ -18,14 +18,14 @@ class RateViewModel(private val repository: CurrencyRepository) : BaseViewModel<
     fun getRatesByBaseCurrency(currencyName: String) {
         viewModelScope.launch {
             uiState = when (val ratesResponse = repository.getRatesByBaseCurrency(currencyName)) {
-                is ResultWrapper.Success -> RateUiModel(
+                is ResultWrapper.Success -> ConverterUiModel(
                     rates = addBaseCurrencyToFirstItem(
                         ratesResponse.value.toMutableList(),
                         currencyName
                     )
                 )
-                is ResultWrapper.GenericError -> RateUiModel(showError = true)
-                is ResultWrapper.NetworkError -> RateUiModel(showError = true)
+                is ResultWrapper.GenericError -> ConverterUiModel(showError = true)
+                is ResultWrapper.NetworkError -> ConverterUiModel(showError = true)
             }
         }
     }
@@ -43,7 +43,7 @@ class RateViewModel(private val repository: CurrencyRepository) : BaseViewModel<
 
     fun calculateEquivalentToAmountBaseCurrency(baseCurrency: BigDecimal) {
         uiState =
-            RateUiModel(rates = uiState?.rates
+            ConverterUiModel(rates = uiState?.rates
                 ?.map { it.copy(convertedValue = it.value * baseCurrency) }
                 ?.toMutableList())
     }
