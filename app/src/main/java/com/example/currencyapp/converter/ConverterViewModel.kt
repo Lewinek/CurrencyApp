@@ -29,8 +29,7 @@ class ConverterViewModel(
                         currencyName
                     )
                 )
-                is ResultWrapper.GenericError -> ConverterUiModel(showError = true)
-                is ResultWrapper.NetworkError -> ConverterUiModel(showError = true)
+                else -> ConverterUiModel(showError = true)
             }
         }
     }

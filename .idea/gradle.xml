@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core_architecture" />
             <option value="$PROJECT_DIR$/core_networking" />
+            <option value="$PROJECT_DIR$/core_utils" />
           </set>
         </option>
       </GradleProjectSettings>
