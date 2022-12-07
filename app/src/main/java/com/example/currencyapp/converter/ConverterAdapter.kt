@@ -5,23 +5,23 @@ import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core_networking.Currency
+import com.example.currencyapp.converter.CurrencyDisplayable
 import com.example.currencyapp.databinding.ItemRateBinding
 import java.math.BigDecimal
 
-class RateAdapter(
+class ConverterAdapter(
     private val onItemClick: (String) -> Unit,
     private val onValueChange: (BigDecimal) -> Unit
-) : androidx.recyclerview.widget.ListAdapter<Currency, RateAdapter.RateViewHolder>(
-    RatesDiffCallback
+) : androidx.recyclerview.widget.ListAdapter<CurrencyDisplayable, ConverterAdapter.ConverterViewHolder>(
+    ConverterDiffCallback
 ) {
-    class RateViewHolder(
+    class ConverterViewHolder(
         private val binding: ItemRateBinding,
         onItemClick: (String) -> Unit,
         onValueChange: (BigDecimal) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        private var baseCurrency: Currency? = null
+        private var baseCurrency: CurrencyDisplayable? = null
 
         init {
             binding.item.setOnClickListener {
@@ -34,20 +34,22 @@ class RateAdapter(
             }
         }
 
-        fun bind(currency: Currency) {
+        fun bind(currency: CurrencyDisplayable) {
             baseCurrency = currency
-            binding.name.text = currency.name
-            if (currency.convertedValue == null) {
-                binding.value.setText(currency.value.toString())
-            } else {
-                binding.value.setText(currency.convertedValue.toString())
+            with(currency){
+                binding.name.text = name
+                if (convertedValue == null) {
+                    binding.value.setText(value.toString())
+                } else {
+                    binding.value.setText(convertedValue.toString())
+                }
+                binding.value.isEnabled = isBaseCurrency
             }
-            binding.value.isEnabled = currency.isBaseCurrency
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RateViewHolder {
-        return RateViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConverterViewHolder {
+        return ConverterViewHolder(
             ItemRateBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -56,18 +58,23 @@ class RateAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: RateViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ConverterViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
-
 }
 
-object RatesDiffCallback : DiffUtil.ItemCallback<Currency>() {
-    override fun areItemsTheSame(oldItem: Currency, newItem: Currency): Boolean {
+object ConverterDiffCallback : DiffUtil.ItemCallback<CurrencyDisplayable>() {
+    override fun areItemsTheSame(
+        oldItem: CurrencyDisplayable,
+        newItem: CurrencyDisplayable
+    ): Boolean {
         return oldItem.name == newItem.name
     }
 
-    override fun areContentsTheSame(oldItem: Currency, newItem: Currency): Boolean {
+    override fun areContentsTheSame(
+        oldItem: CurrencyDisplayable,
+        newItem: CurrencyDisplayable
+    ): Boolean {
         return oldItem == newItem
     }
 }

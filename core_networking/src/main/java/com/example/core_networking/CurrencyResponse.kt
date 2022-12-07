@@ -4,5 +4,5 @@ data class CurrencyResponse(
     val baseCurrency: String,
     val rates: Map<String, Double>
 ) {
-   val convertedRates: List<Currency> = rates.map { Currency(it.key, it.value.toBigDecimal()) }
+   val convertedRates: List<CurrencyRemote> = rates.map { CurrencyRemote(it.key, it.value.toBigDecimal()) }
 }

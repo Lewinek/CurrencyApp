@@ -1,17 +1,17 @@
 package com.example.currencyapp.converter
 
 import com.example.core_architecture.BaseFragment
+import com.example.currencyapp.ConverterAdapter
 import com.example.currencyapp.R
-import com.example.currencyapp.RateAdapter
-import com.example.currencyapp.databinding.FragmentRateBinding
+import com.example.currencyapp.databinding.FragmentConverterBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ConverterFragment :
-    BaseFragment<ConverterUiModel, ConverterViewModel, FragmentRateBinding>(R.layout.fragment_rate) {
+    BaseFragment<ConverterUiModel, ConverterViewModel, FragmentConverterBinding>(R.layout.fragment_converter) {
     override val viewModel: ConverterViewModel by viewModel()
 
-    override fun initViews(binding: FragmentRateBinding) {
-        binding.ratesRecyclerView.adapter = RateAdapter(
+    override fun initViews(binding: FragmentConverterBinding) {
+        binding.converterRecyclerView.adapter = ConverterAdapter(
             onItemClick = {
                 viewModel.getRatesByBaseCurrency(it)
             },
@@ -22,9 +22,9 @@ class ConverterFragment :
     }
 
     override fun render(model: ConverterUiModel) {
-        model.rates?.let {
-            (binding?.ratesRecyclerView?.adapter as RateAdapter).submitList(it)
-            binding?.ratesRecyclerView?.scrollToPosition(0)
+        model.currencies?.let {
+            (binding?.converterRecyclerView?.adapter as ConverterAdapter).submitList(it)
+            binding?.converterRecyclerView?.scrollToPosition(0)
         }
     }
 }
