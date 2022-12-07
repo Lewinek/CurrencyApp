@@ -3,13 +3,13 @@ package com.example.currencyapp.converter
 import androidx.lifecycle.viewModelScope
 import com.example.core_architecture.BaseViewModel
 import com.example.core_networking.CurrencyRepository
-import com.example.core_networking.Currency
 import com.example.core_networking.ResultWrapper
 import com.example.currencyapp.Constants
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 
-class ConverterViewModel(private val repository: CurrencyRepository) : BaseViewModel<ConverterUiModel>() {
+class ConverterViewModel(private val repository: CurrencyRepository) :
+    BaseViewModel<ConverterUiModel>() {
 
     init {
         getRatesByBaseCurrency(Constants.INITIAL_CURRENCY_VALUE_NAME)
@@ -20,7 +20,9 @@ class ConverterViewModel(private val repository: CurrencyRepository) : BaseViewM
             uiState = when (val ratesResponse = repository.getRatesByBaseCurrency(currencyName)) {
                 is ResultWrapper.Success -> ConverterUiModel(
                     rates = addBaseCurrencyToFirstItem(
-                        ratesResponse.value.toMutableList(),
+                        ratesResponse.value
+                            .map { CurrencyDisplayable(it) }
+                            .toMutableList(),
                         currencyName
                     )
                 )
@@ -31,12 +33,12 @@ class ConverterViewModel(private val repository: CurrencyRepository) : BaseViewM
     }
 
     private fun createBaseCurrency(currencyName: String) =
-        Currency(currencyName, 1.toBigDecimal(), true, 1.toBigDecimal())
+        CurrencyDisplayable(currencyName, 1.toBigDecimal(), true, 1.toBigDecimal())
 
     private fun addBaseCurrencyToFirstItem(
-        currencies: MutableList<Currency>,
+        currencies: MutableList<CurrencyDisplayable>,
         currencyName: String
-    ): MutableList<Currency> {
+    ): MutableList<CurrencyDisplayable> {
         currencies.add(0, createBaseCurrency(currencyName))
         return currencies
     }
