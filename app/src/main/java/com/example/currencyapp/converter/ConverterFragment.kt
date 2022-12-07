@@ -1,6 +1,7 @@
 package com.example.currencyapp.converter
 
 import com.example.core_architecture.BaseFragment
+import com.example.core_utils.extensions.showToast
 import com.example.currencyapp.ConverterAdapter
 import com.example.currencyapp.R
 import com.example.currencyapp.databinding.FragmentConverterBinding
@@ -26,5 +27,6 @@ class ConverterFragment :
             (binding?.converterRecyclerView?.adapter as ConverterAdapter).submitList(it)
             binding?.converterRecyclerView?.scrollToPosition(0)
         }
+        model.showError?.let { showToast(getString(R.string.something_went_wrong)) }
     }
 }
