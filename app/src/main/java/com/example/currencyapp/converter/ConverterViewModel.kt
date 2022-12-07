@@ -20,10 +20,10 @@ class ConverterViewModel(
 
     fun getRatesByBaseCurrency(currencyName: String) {
         viewModelScope.launch {
-            uiState = when (val ratesResponse = repository.getRatesByBaseCurrency(currencyName)) {
+            uiState = when (val currencyResponse = repository.getRatesByBaseCurrency(currencyName)) {
                 is ResultWrapper.Success -> ConverterUiModel(
-                    rates = addBaseCurrencyToFirstItem(
-                        ratesResponse.value
+                    currencies = addBaseCurrencyToFirstItem(
+                        currencyResponse.value
                             .map { CurrencyDisplayable(it) }
                             .toMutableList(),
                         currencyName
@@ -45,7 +45,7 @@ class ConverterViewModel(
 
     fun calculateEquivalentToAmountBaseCurrency(baseCurrency: BigDecimal) {
         uiState =
-            ConverterUiModel(rates = uiState?.rates
+            ConverterUiModel(currencies = uiState?.currencies
                 ?.map { it.copy(convertedValue = it.value * baseCurrency) }
                 ?.toMutableList())
     }
