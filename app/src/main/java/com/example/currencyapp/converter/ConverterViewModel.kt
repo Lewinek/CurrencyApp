@@ -5,11 +5,14 @@ import com.example.core_architecture.BaseViewModel
 import com.example.core_networking.CurrencyRepository
 import com.example.core_networking.ResultWrapper
 import com.example.currencyapp.Constants
+import com.example.currencyapp.CurrencyCreator
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 
-class ConverterViewModel(private val repository: CurrencyRepository) :
-    BaseViewModel<ConverterUiModel>() {
+class ConverterViewModel(
+    private val repository: CurrencyRepository,
+    private val currencyCreator: CurrencyCreator
+    ) : BaseViewModel<ConverterUiModel>() {
 
     init {
         getRatesByBaseCurrency(Constants.INITIAL_CURRENCY_VALUE_NAME)
@@ -32,14 +35,11 @@ class ConverterViewModel(private val repository: CurrencyRepository) :
         }
     }
 
-    private fun createBaseCurrency(currencyName: String) =
-        CurrencyDisplayable(currencyName, 1.toBigDecimal(), true, 1.toBigDecimal())
-
     private fun addBaseCurrencyToFirstItem(
         currencies: MutableList<CurrencyDisplayable>,
         currencyName: String
     ): MutableList<CurrencyDisplayable> {
-        currencies.add(0, createBaseCurrency(currencyName))
+        currencies.add(0, currencyCreator.createBaseCurrency(currencyName))
         return currencies
     }
 
