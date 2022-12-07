@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/rateFragment"
-        android:name="com.example.currencyapp.rate.ConverterFragment"
+        android:name="com.example.currencyapp.converter.ConverterFragment"
         android:label="RateFragment" />
 
     <action

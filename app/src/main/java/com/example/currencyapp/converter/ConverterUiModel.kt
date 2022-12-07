@@ -1,4 +1,4 @@
-package com.example.currencyapp.rate
+package com.example.currencyapp.converter
 
 import com.example.core_architecture.UiModel
 import com.example.core_networking.Currency

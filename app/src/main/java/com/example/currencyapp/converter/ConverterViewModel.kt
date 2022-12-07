@@ -1,4 +1,4 @@
-package com.example.currencyapp.rate
+package com.example.currencyapp.converter
 
 import androidx.lifecycle.viewModelScope
 import com.example.core_architecture.BaseViewModel

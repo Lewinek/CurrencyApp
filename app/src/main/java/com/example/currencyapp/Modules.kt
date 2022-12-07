@@ -1,6 +1,6 @@
 package com.example.currencyapp
 
-import com.example.currencyapp.rate.ConverterViewModel
+import com.example.currencyapp.converter.ConverterViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
