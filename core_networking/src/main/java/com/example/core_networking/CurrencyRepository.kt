@@ -6,6 +6,6 @@ interface CurrencyRepository {
 
 class CurrencyRepositoryImpl(private val api: CurrencyApi) : CurrencyRepository {
     override suspend fun getRatesByBaseCurrency(name: String): ResultWrapper<List<Currency>> {
-        return safeApiCall { api.getRatesByBaseCurrency(name).convertedRates }
+        return safeApiCall { api.getRatesByBaseCurrency(name).convertedRates.map { it.toCurrency() } }
     }
 }
