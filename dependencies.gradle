@@ -74,6 +74,6 @@ ext {
             kotest        : "io.kotest:kotest-assertions-core:$versions.kotest",
             kotestProperty: "io.kotest:kotest-property:$versions.kotest",
             coroutinesTest: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutinesAndroid",
-            truth         : "ocom.google.truth:truth:$versions.truth",
+            truth         : "com.google.truth:truth:$versions.truth",
     ]
 }
