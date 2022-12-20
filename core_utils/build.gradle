@@ -1,14 +1,12 @@
 plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    id 'com.android.library'
+    id 'kotlin-android'
 }
 
 android {
-    namespace 'com.example.currencyapp'
     compileSdk projectVersions.compileSdk
 
     defaultConfig {
-        applicationId "com.example.currencyapp"
         minSdk projectVersions.minSdk
         targetSdk projectVersions.targetSdk
         versionCode projectVersions.versionCode
@@ -22,40 +20,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
-    buildFeatures{
-        dataBinding true
-    }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
         jvmTarget = '1.8'
-    }
-
-    testOptions {
-        unitTests.all {
-            useJUnitPlatform()
-        }
-    }
-
-    packagingOptions {
-        resources.excludes.add("META-INF/*")
     }
 }
 
 dependencies {
-    implementation project(":core_architecture")
-    implementation project(":core_networking")
-    implementation project(":core_utils")
-
     implementation coreDependencies.values()
     implementation uiDependencies.values()
     implementation coroutinesDependencies.values()
-    implementation koinDependencies.values()
     implementation networkDependencies.values()
-    implementation testDependencies.values()
+    implementation koinDependencies.values()
 }
