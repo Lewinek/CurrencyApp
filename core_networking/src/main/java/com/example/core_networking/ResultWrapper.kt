@@ -9,7 +9,7 @@ import java.io.IOException
 sealed class ResultWrapper<out T> {
     data class Success<out T>(val value: T) : ResultWrapper<T>()
     data class GenericError(val code: Int? = null) : ResultWrapper<Nothing>()
-    data class NetworkError(val message: String? = null) : ResultWrapper<Nothing>()
+    object NetworkError : ResultWrapper<Nothing>()
 }
 
 suspend fun <T> safeApiCall(
@@ -21,7 +21,7 @@ suspend fun <T> safeApiCall(
             ResultWrapper.Success(apiCall.invoke())
         } catch (throwable: Throwable) {
             when (throwable) {
-                is IOException -> ResultWrapper.NetworkError(throwable.message)
+                is IOException -> ResultWrapper.NetworkError
                 is HttpException -> ResultWrapper.GenericError(throwable.code())
                 else -> ResultWrapper.GenericError(null)
             }
