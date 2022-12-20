@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test
 
 internal class RateViewModelTest : ViewModelTest() {
     @Test
-    fun `should set result in live data on successful response`() {
+    fun `on successful response should add base currency to result then set it in live data`() {
         //Prepare
         val givenList = listOf(
             Currency.mock(name = "BRL"),
@@ -35,6 +35,36 @@ internal class RateViewModelTest : ViewModelTest() {
 
         //Then
         viewModel.uiLiveData.value?.rates shouldBe expectedList
+    }
+
+    @Test
+    fun `should return true on bad request error`() {
+        //Prepare
+        val repository = mockk<CurrencyRepositoryImpl> {
+            coEvery { getRatesByBaseCurrency(any()) } returns ResultWrapper.GenericError(200)
+        }
+        val viewModel = RateViewModel(repository)
+
+        //When
+        viewModel.getRatesByBaseCurrency("GBP")
+
+        //Then
+        viewModel.uiLiveData.value?.showError shouldBe true
+    }
+
+    @Test
+    fun `should return true on network error`() {
+        //Prepare
+        val repository = mockk<CurrencyRepositoryImpl> {
+            coEvery { getRatesByBaseCurrency(any()) } returns ResultWrapper.NetworkError
+        }
+        val viewModel = RateViewModel(repository)
+
+        //When
+        viewModel.getRatesByBaseCurrency("GBP")
+
+        //Then
+        viewModel.uiLiveData.value?.showError shouldBe true
     }
 }
 
