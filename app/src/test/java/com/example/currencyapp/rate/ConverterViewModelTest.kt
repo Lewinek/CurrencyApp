@@ -3,14 +3,17 @@ package com.example.currencyapp.rate
 import com.example.core_networking.Currency
 import com.example.core_networking.CurrencyRepositoryImpl
 import com.example.core_networking.ResultWrapper
+import com.example.currencyapp.CurrencyCreator
 import com.example.currencyapp.ViewModelTest
+import com.example.currencyapp.converter.ConverterViewModel
+import com.example.currencyapp.converter.CurrencyDisplayable
 import io.kotest.matchers.shouldBe
 import io.mockk.coEvery
 import io.mockk.mockk
 import org.jetbrains.annotations.TestOnly
 import org.junit.jupiter.api.Test
 
-internal class RateViewModelTest : ViewModelTest() {
+internal class ConverterViewModelTest : ViewModelTest() {
     @Test
     fun `on successful response should add base currency to result then set it in live data`() {
         //Prepare
@@ -28,13 +31,14 @@ internal class RateViewModelTest : ViewModelTest() {
         val repository = mockk<CurrencyRepositoryImpl> {
             coEvery { getRatesByBaseCurrency("GBP") } returns ResultWrapper.Success(givenList)
         }
-        val viewModel = RateViewModel(repository)
+        val creator = CurrencyCreator()
+        val viewModel = ConverterViewModel(repository, creator)
 
         //When
         viewModel.getRatesByBaseCurrency("GBP")
 
         //Then
-        viewModel.uiLiveData.value?.rates shouldBe expectedList
+        viewModel.uiLiveData.value?.currencies shouldBe expectedList.map { CurrencyDisplayable(it) }
     }
 
     @Test
@@ -43,7 +47,8 @@ internal class RateViewModelTest : ViewModelTest() {
         val repository = mockk<CurrencyRepositoryImpl> {
             coEvery { getRatesByBaseCurrency(any()) } returns ResultWrapper.GenericError(200)
         }
-        val viewModel = RateViewModel(repository)
+        val creator = CurrencyCreator()
+        val viewModel = ConverterViewModel(repository, creator)
 
         //When
         viewModel.getRatesByBaseCurrency("GBP")
@@ -58,7 +63,8 @@ internal class RateViewModelTest : ViewModelTest() {
         val repository = mockk<CurrencyRepositoryImpl> {
             coEvery { getRatesByBaseCurrency(any()) } returns ResultWrapper.NetworkError
         }
-        val viewModel = RateViewModel(repository)
+        val creator = CurrencyCreator()
+        val viewModel = ConverterViewModel(repository, creator)
 
         //When
         viewModel.getRatesByBaseCurrency("GBP")
@@ -75,3 +81,4 @@ fun Currency.Companion.mock(name: String = "GBP", isBaseCurrency: Boolean = fals
     isBaseCurrency = isBaseCurrency,
     convertedValue = 1.toBigDecimal()
 )
+
